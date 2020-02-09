@@ -17,6 +17,9 @@ class Cube():
 
     def addSide(self, side, color):
         self.cube[Helper.helper.sideDict[side]] = Square.Square(side, color)
+    
+    def removeSide(self, side):
+        self.cube[Helper.helper.sideDict[side]].setColor(Helper.helper.colorDictRev[6])
 
     def getCube(self):
         return self.cube
