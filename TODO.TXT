@@ -1,0 +1,2 @@
+Add RGB(Hex) values for the color dict
+    -possibly remove strings from being stored for sides/color - switch to intergers
