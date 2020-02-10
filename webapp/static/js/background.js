@@ -10,7 +10,7 @@ function init() {
   camera.rotation.z = 0.27;
 
   let ambient = new THREE.AmbientLight(0x555555);
-  let directionalLight = new THREE.DirectionalLight(0xff8c19);
+  let directionalLight = new THREE.DirectionalLight(0xff8c19); // 0xff8c19
   let orangeLight = new THREE.PointLight(0xcc6600, 50, 450, 1.7);
   let redLight = new THREE.PointLight(0xd8547e, 50, 450, 1.7);
   let blueLight = new THREE.PointLight(0x3677ac, 50, 450, 1.7);
@@ -28,7 +28,7 @@ function init() {
 
   renderer = new THREE.WebGLRenderer();
   renderer.setSize(window.innerWidth, window.innerHeight);
-  scene.fog = new THREE.FogExp2(0x0e0329, 0.001);
+  scene.fog = new THREE.FogExp2(0x0e0329, 0.001); // 0x0e0329
   renderer.setClearColor(scene.fog.color);
   document.body.appendChild(renderer.domElement);
 
