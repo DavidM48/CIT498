@@ -6,26 +6,26 @@ import copy
 class Cube():
     def __init__(self, default):
         if default == True:
-            self.cube  = [Square.Square(Helper.helper.sideDictRev[0], Helper.helper.colorDictRev[0]),
-            Square.Square(Helper.helper.sideDictRev[1], Helper.helper.colorDictRev[1]), 
-            Square.Square(Helper.helper.sideDictRev[2], Helper.helper.colorDictRev[2]), 
-            Square.Square(Helper.helper.sideDictRev[3], Helper.helper.colorDictRev[3]), 
-            Square.Square(Helper.helper.sideDictRev[4], Helper.helper.colorDictRev[4]), 
-            Square.Square(Helper.helper.sideDictRev[5], Helper.helper.colorDictRev[5])]
+            self.cube  = [Square.Square(0, 0),
+            Square.Square(1, 1), 
+            Square.Square(2, 2), 
+            Square.Square(3, 3), 
+            Square.Square(4, 4), 
+            Square.Square(5, 5)]
         else:
             pass
 
     def addSide(self, side, color):
-        self.cube[Helper.helper.sideDict[side]] = Square.Square(side, color)
+        self.cube[side] = Square.Square(side, color)
     
     def removeSide(self, side):
-        self.cube[Helper.helper.sideDict[side]].setColor(Helper.helper.colorDictRev[6])
+        self.cube[side].setColor(6)
 
     def getCube(self):
         return self.cube
 
     def getSquare(self, side): 
-        return self.cube[Helper.helper.sideDict[side]]
+        return self.cube[side]
     
     def createCopy(self):
         return copy.deepcopy(self)
