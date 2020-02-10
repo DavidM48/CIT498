@@ -25,7 +25,21 @@ class Rubiks():
             for y in range(self.size):
                 for z in range(self.size):
                     self.rubiks[x][y][z] = copy.deepcopy(self.dc)
-        self.cleanUp()
+                    if y <= 1:
+                        self.rubiks[x][y][z].removeSide(1)
+                    if y >= 1:
+                        self.rubiks[x][y][z].removeSide(2)
+                    #remove east or west
+                    if z <= 1:
+                        self.rubiks[x][y][z].removeSide(3)
+                    if z >= 1:
+                        self.rubiks[x][y][z].removeSide(0)
+                    #remove top or bottom
+                    if x <= 1:
+                        self.rubiks[x][y][z].removeSide(5)
+                    if x >= 1:
+                        self.rubiks[x][y][z].removeSide(4)
+        #self.cleanUp()
 
     def cleanUp(self):
         for x in range(self.size):
@@ -33,21 +47,19 @@ class Rubiks():
                 for z in range(self.size):
                     #remove north or south sides
                     if y <= 1:
-                        self.rubiks[x][y][z].removeSide(Helper.helper.sideDictRev[1])
+                        self.rubiks[x][y][z].removeSide(1)
                     if y >= 1:
-                        self.rubiks[x][y][z].removeSide(Helper.helper.sideDictRev[2])
-                    
+                        self.rubiks[x][y][z].removeSide(2)
                     #remove east or west
                     if z <= 1:
-                        self.rubiks[x][y][z].removeSide(Helper.helper.sideDictRev[3])
+                        self.rubiks[x][y][z].removeSide(3)
                     if z >= 1:
-                        self.rubiks[x][y][z].removeSide(Helper.helper.sideDictRev[0])
-
+                        self.rubiks[x][y][z].removeSide(0)
                     #remove top or bottom
                     if x <= 1:
-                        self.rubiks[x][y][z].removeSide(Helper.helper.sideDictRev[5])
+                        self.rubiks[x][y][z].removeSide(5)
                     if x >= 1:
-                        self.rubiks[x][y][z].removeSide(Helper.helper.sideDictRev[4])
+                        self.rubiks[x][y][z].removeSide(4)
 
     def getRubiks(self):
         return self.rubiks
@@ -65,7 +77,7 @@ class Rubiks():
 #print(Helper.helper.sideDict)
 rc = Rubiks(3)  
 #rc.fillRubiks()
-rc.test()
+#rc.test()
 #pprint.pprint(rc.getRubiks())
-print(rc.getRubiks()[1][1][0])
-#print(rc.getRubiks()[0][0][0])
+#print(rc.getRubiks()[1][1][0])
+print(rc.getRubiks()[0][0][0])
