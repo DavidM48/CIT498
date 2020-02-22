@@ -1,4 +1,4 @@
-Buildt using Python 3.7.3 32-bit
+Buildt using Python 3.7.5
 <br>
-Python Librarys useed:
-    Flask
+Python Librarys useed:<br>
+    Flask<br>
