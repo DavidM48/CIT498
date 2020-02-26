@@ -1,7 +1,5 @@
 import Helper
 
-import copy
-
 class Square:
     side = ""
     color = ""
@@ -10,17 +8,17 @@ class Square:
         pass
 
     def __init__(self, side: int, color: int):
-        self.setSide(copy.deepcopy(side))
-        self.setColor(copy.deepcopy(color))
+        self.setSide(side)
+        self.setColor(color)
 
     def setSide(self, side: int):
-        self.side = copy.deepcopy(side)
+        self.side = side
 
     def setColor(self, color: int):
-        self.color = copy.deepcopy(Helper.helper.colorDictHex[Helper.helper.colorDictRev[color]])
+        self.color = Helper.helper.colorDictHex[Helper.helper.colorDictRev[color]]
 
     def setColorHex(self, color: int):
-        self.color = copy.deepcopy(color)
+        self.color = color
             
     def getSide(self):
         return self.side
