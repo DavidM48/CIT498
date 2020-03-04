@@ -1,2 +1,17 @@
-Add RGB(Hex) values for the color dict
-    -possibly remove strings from being stored for sides/color - switch to intergers
+Vega:
+-Write/Read Rubiks cube to file
+    -Json/Pickle
+    -Save to database
+-Rotate
+-Shuffle
+-Solve without using AI
+    -detect when cube is sloved vs not sloved -- related to read/write Rubiks cube?
+-Implemnt Q-learning
+
+Webapp:
+-Finish login page
+-Setup/link databases
+-Hash+salt passwords
+-3D render of Rubiks cube
+-Convert Python code of Rubiks cube to Json
+-Implemnt reCAPTCHA
