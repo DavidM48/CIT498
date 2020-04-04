@@ -3,9 +3,6 @@ import Helper
 class Square:
     color = ""
 
-    def __init__(self):
-        pass
-
     def __init__(self, color: int):
         self.setColor(color)
 
