@@ -81,17 +81,17 @@ class helper {
 
     hexDict(color) {
         if (color === 0)
-            var x = 0xffffff;
+            var x = 0xffffff; //opposite of 1 - south
         else if (color === 1)
-            var x = 0xff0000;
+            var x = 0xff0000; //opposite of 0 - north
         else if (color === 2)
-            var x = 0x00ff00;
+            var x = 0x00ff00; //top
         else if (color === 3)
-            var x = 0x0000ff;
+            var x = 0x0000ff; //bottom
         else if (color === 4)
-            var x = 0xffae00;
+            var x = 0xffae00; //opposite of 5 - west
         else if (color === 5)
-            var x = 0xffff00;
+            var x = 0xffff00; //opposite of 4 - east
         else
             var x = 0x000000;
         return x;
@@ -100,23 +100,13 @@ class helper {
 
 class square {
     h = new helper();
-    side;
     color;
-    constructor(side, color) {
-        this.side = side;
+    constructor(color) {
         this.color = color;
-    }
-
-    setSide(side) {
-        this.side = side;
     }
 
     setColor(color) {
         this.color = color;
-    }
-
-    getSide() {
-        return this.side;
     }
 
     getColorString() {
@@ -130,24 +120,22 @@ class square {
 
 class cube {
     h = new helper();
-    constructor(def) {
-        if (def) {
-            this.cube = [new square(0, 0),
-                new square(1, 1),
-                new square(2, 2),
-                new square(3, 3),
-                new square(4, 4),
-                new square(5, 5)
-            ];
-        }
+    constructor() {
+        this.cube = [new square(0),
+            new square(1),
+            new square(2),
+            new square(3),
+            new square(4),
+            new square(5)
+        ];  
     }
 
     addSide(side, color) {
-        this.cube[this.h.side(side)] = square(side, color);
+        this.cube[side] = square(color);
     }
 
     removeSide(side) {
-        this.cube[this.h.side(side)].setColor(this.h.color(6));
+        this.cube[side].setColor(6);
     }
 
     getCube() {
@@ -155,7 +143,7 @@ class cube {
     }
 
     getSquare(side) {
-        return this.cube[this.h.side(side)];
+        return this.cube[side];
     }
 }
 
@@ -178,29 +166,34 @@ class rubiks_cube {
                 this.rubiks[x][y] = new Array(this.size);;
             }
         }
+        return(this.rubiks)
     }
-
-    defaultCube() {
-        this.dc = cube(true)
-    }
-
+    //# Mine   -- Three
+    //0 west   -- south
+    //1 south  -- north
+    //2 north  -- top
+    //3 east   -- bottom
+    //4 top    -- west
+    //5 bottom -- east
     fillRubiks() {
         for (var x = 0; x < this.size; x++)
             for (var y = 0; y < this.size; y++)
                 for (var z = 0; z < this.size; z++) {
-                    this.rubiks[x][y][z] = new cube(true);
-                    if (y <= 1)
-                        this.rubiks[x][y][z].removeSide(this.h.side(1));
-                    if (y >= 1)
-                        this.rubiks[x][y][z].removeSide(this.h.side(2));
-                    if (z <= 1)
-                        this.rubiks[x][y][z].removeSide(this.h.side(3));
-                    if (z >= 1)
-                        this.rubiks[x][y][z].removeSide(this.h.side(0));
+                    this.rubiks[x][y][z] = new cube();
                     if (x <= 1)
-                        this.rubiks[x][y][z].removeSide(this.h.side(5));
+                        this.rubiks[x][y][z].removeSide(0); 
                     if (x >= 1)
-                        this.rubiks[x][y][z].removeSide(this.h.side(4));
+                        this.rubiks[x][y][z].removeSide(1);
+
+                    if (y <= 1)
+                        this.rubiks[x][y][z].removeSide(2);
+                    if (y >= 1)
+                        this.rubiks[x][y][z].removeSide(3);
+
+                    if (z <= 1)
+                        this.rubiks[x][y][z].removeSide(4);
+                    if (z >= 1)
+                        this.rubiks[x][y][z].removeSide(5);
                 }
     }
 
