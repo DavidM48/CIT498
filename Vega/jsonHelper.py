@@ -5,6 +5,8 @@ import Helper
 
 import json
 
+## This Clas converts the data that we need to work with 
+# into a dictionary to then be converted into a json file
 
 class JSONRubiksWrite():
 
