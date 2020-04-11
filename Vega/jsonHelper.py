@@ -5,7 +5,7 @@ import Helper
 
 import json
 
-## This Clas converts the data that we need to work with 
+## This Class converts the data that we need to work with 
 # into a dictionary to then be converted into a json file
 
 class JSONRubiksWrite():
@@ -18,7 +18,7 @@ class JSONRubiksWrite():
         return {"sides":cube.getNumberOfSides(),"colors":cube.getColorArray()}
     
     def convertToJSON(self):
-        result = {}
+        result = {"size":self.size}
         for x in range(self.size):
             result[x] = {}
             for y in range(self.size):
