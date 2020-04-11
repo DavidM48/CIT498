@@ -1,6 +1,7 @@
 import Cube
 import Helper
 
+import random
 import math
 import pprint
 import copy
@@ -115,6 +116,10 @@ class Rubiks():
         for x in range(len(sliced)):
             sliced[x].swapCommitQueue()
             sliced[x].rotateCube(plain, reverse)
+    
+    def shuffle(self, n: int):
+        for x in range(n):
+            self.rotateRubiks(random.randint(0,self.size-1),random.randint(0,2), True if random.randint(0,1) == 1 else False)
          
     def test(self):
         w = ""
