@@ -25,6 +25,14 @@ class Cube():
     
     def getCords(self):
         return [self.x, self.y, self.z]
+    
+    def getColorArray(self):
+        return [self.cube[0].getColor(),
+                self.cube[1].getColor(),
+                self.cube[2].getColor(),
+                self.cube[3].getColor(),
+                self.cube[4].getColor(),
+                self.cube[5].getColor()]
 
     def swapQueue(self, cube):
         if self.queueReady:
@@ -57,56 +65,59 @@ class Cube():
     def queueState(self):
         return self.queueReady
 
-    # Column rotate clockwise
-    # east & west stay the same
-    # Top    > North
-    # North  > Bottom
-    # Bottom > south
-    # South  > top
-    # counter Clockwise of above is reverse of above
+    #0 south
+    #1 north
+    #2 top
+    #3 bottom
+    #4 west
+    #5 east
 
-    # Row rotate Clockwise
-    # Top & bottom stay the same
-    # North > east
-    # east  > south
-    # south > west
-    # west  > north
-    # counter Clockwise is the reverse of above
-    #West > sount > north > east > top > bottom
-
-    #self.setSide(0,self.getSquare(0).getColor()) #west
-    #self.setSide(1, self.getSquare(5).getColor()) #south
-    #self.setSide(2, self.getSquare(4).getColor()) #north
-    #self.setSide(3,self.getSquare(0).getColor()) #east
-    #self.setSide(4, self.getSquare(1).getColor()) #top
-    #self.setSide(5, self.getSquare(2).getColor()) #bottom 
-    #0:"West"
-    #1:"South"
-    #2:"North"
-    #3:"East"
-    #4:"Top"
-    #5:"Bottom"
-
+    # 2 false
+    # 2 > 5
+    # 3 > 4
+    # 4 > 2
+    # 5 > 3
     def rotateCube(self, plain: int, reverse: bool):
         temp = copy.deepcopy(self.cube)
         if (plain == 0):
-            if reverse:#Counter-clockwise
-                self.cube[1] = temp[4]
-                self.cube[2] = temp[5]
-                self.cube[4] = temp[2]
-                self.cube[5] = temp[1]
-            else:#clockwise
-                self.cube[1] = temp[5]
-                self.cube[2] = temp[4]
-                self.cube[4] = temp[1]
-                self.cube[5] = temp[2]
+            if reverse:
+                self.cube[0] = temp[2]
+                self.cube[1] = temp[3]
+                self.cube[2] = temp[1]
+                self.cube[3] = temp[0]
+            else:
+                self.cube[0] = temp[3]
+                self.cube[1] = temp[2]
+                self.cube[2] = temp[0]
+                self.cube[3] = temp[1]
         elif (plain == 1):
-            pass
+            if reverse:
+                self.cube[2] = temp[4]
+                self.cube[3] = temp[5]
+                self.cube[4] = temp[3]
+                self.cube[5] = temp[2]
+            else:
+                self.cube[2] = temp[5]
+                self.cube[3] = temp[4]
+                self.cube[4] = temp[2]
+                self.cube[5] = temp[3]
         else:
-            pass
+            if reverse:
+                self.cube[0] = temp[4]
+                self.cube[1] = temp[5]
+                self.cube[4] = temp[1]
+                self.cube[5] = temp[0]
+            else:
+                self.cube[0] = temp[5]
+                self.cube[1] = temp[4]
+                self.cube[4] = temp[0]
+                self.cube[5] = temp[1]
 
     def setSide(self, side: int, color: int):
-        self.cube[side] = Square.Square(side, color)
+        self.cube[side] = Square.Square(color)
+
+    def setSideOverride(self, side: int, color: int):
+        self.cube[side].setColorOverride(color)
 
     def setSideSquare(self, side: int, square: Square):
         self.cube[side] = copy.deepcopy(square)
@@ -126,10 +137,9 @@ class Cube():
     
     def setSquare(self, side, square: Square):
         self.cube[side].setColorHex(square.getColor())
-        #self.cube[side].setSide(square.getSide())
     
     def createCopy(self):
         return copy.deepcopy(self)
     
     def __str__(self):
-        return "West:{},\nSouth:{},\nNorth:{},\nEast:{},\nTop:{},\nBottom:{}".format(self.cube[0], self.cube[1], self.cube[2], self.cube[3], self.cube[4], self.cube[5])
+        return "South:{},\nNorth:{},\nTop:{},\nBottom:{},\nWest:{},\nEast:{}".format(self.cube[0], self.cube[1], self.cube[2], self.cube[3], self.cube[4], self.cube[5])
