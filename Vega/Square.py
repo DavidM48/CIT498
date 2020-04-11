@@ -9,6 +9,9 @@ class Square:
     def setColor(self, color: int):
         self.color = Helper.helper.colorDictHex[Helper.helper.colorDictRev[color]]
 
+    def setColorOverride(self, color: int):
+        self.color = color
+
     def setColorHex(self, color: int):
         self.color = color           
     
