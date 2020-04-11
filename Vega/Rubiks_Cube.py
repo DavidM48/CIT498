@@ -10,6 +10,8 @@ class Rubiks():
     
     def __init__(self, size):
         self.size = size
+        self.logMoves = {}
+        self.logCount = 0
         self.defaultCube()
         self.initRubiks()
         self.fillRubiks()
@@ -48,34 +50,9 @@ class Rubiks():
     def getSize(self):
         return self.size
 
-
-    #pairs - counter clockwise 
-    #0,2 - c
-    #1,5 - s 
-    #2,8 - c
-    #3,1 - s 
-    #4,none
-    #5,7 - s 
-    #6,0 - c
-    #7,3 - s 
-    #8,6 - c
-
-    #pairs - clockwise 
-    #0,6 - c
-    #2,0 - c
-    #6,8 - c
-    #8,2 - c
-
-    #1,3 - s 
-    #3,7 - s 
-    #5,1 - s 
-    #7,5 - s 
-    
-    #plain 
-    # 0 = vertical = z
-    # 1 = horizontal = x
-    # 2 = = y
     def rotateRubiks(self, i: int, plain: int, reverse: bool):
+        self.logMoves[self.logCount] = {"i":i,"plain":plain,"reverse":reverse}
+        self.logCount = self.logCount + 1
         if (i >= self.size or i < 0):
             #Check to make sure i is within limits
             pass
@@ -91,9 +68,7 @@ class Rubiks():
                 else:
                     sliced.append((self.rubiks[x][i][y]))
 
-        #for x in range(len(sliced)):
-            #print(sliced[x].getCords())
-
+        #Only works with 3x3x3
         if reverse:
             sliced[0].swapQueue(sliced[6])
             sliced[1].swapQueue(sliced[3])
@@ -120,7 +95,10 @@ class Rubiks():
     def shuffle(self, n: int):
         for x in range(n):
             self.rotateRubiks(random.randint(0,self.size-1),random.randint(0,2), True if random.randint(0,1) == 1 else False)
-         
+
+    def getMoveLog(self):
+        return self.logMoves
+
     def test(self):
         w = ""
         for x in range(self.size):
