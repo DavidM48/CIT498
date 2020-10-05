@@ -85,6 +85,7 @@ function init() {
     composer.addPass(new POSTPROCESSING.RenderPass(scene, camera));
     composer.addPass(effectPass);
   });
+  
   window.addEventListener("resize", onWindowResize, false);
   render();
 }

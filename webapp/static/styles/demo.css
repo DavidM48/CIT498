@@ -1,0 +1,10 @@
+.btnStart{
+    padding: 10px 0px;
+    border-radius: 15px;
+    background-color: rgba(6,56,94);
+    text-decoration: none;
+}
+
+.btnStart:hover {
+    background-color: #111;
+}

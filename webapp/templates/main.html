@@ -1,30 +1,114 @@
+<!DOCTYPE html>
 <html>
 
 <head>
 	<meta charset="UTF-8">
 	<title>{{ title }}</title>
 
-	<link rel="apple-touch-icon" sizes="180x180" href="./staic/favicon_io/apple-touch-icon.png">
-	<link rel="icon" type="image/png" sizes="32x32" href="./staic/favicon_io//favicon-32x32.png">
-	<link rel="icon" type="image/png" sizes="16x16" href="./staic/favicon_io//favicon-16x16.png">
-	<link rel="manifest" href="./staic/favicon_io/site.webmanifest">
+	<link rel="apple-touch-icon" sizes="180x180" href="../staic/favicon_io/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="../staic/favicon_io//favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="../staic/favicon_io//favicon-16x16.png">
+	<link rel="manifest" href="../staic/favicon_io/site.webmanifest">
 
 	<link href="https://fonts.googleapis.com/css?family=Lato:300,400&display=swap" rel="stylesheet">
 	
-	<script src="./static/librarys/three.min.js"></script>
-    <script src="./static/librarys/postprocessing.min.js"></script>
+	<script src="../static/librarys/three.min.js"></script>
+    <script src="../static/librarys/postprocessing.min.js"></script>
 	
+	<link rel="stylesheet" href='../static/styles/main.css' />
 	
-    <script src="./static/js/Rubiks_cube.js"></script>
+	<script src="../static/js/Rubiks_cube.js"></script>
 	
-	<style>
-		body { margin: 0; }
-		canvas { display: block; }
-	</style>
 </head>
 
-<body>
-	<script  src="./static/js/three-test.js"></script>
+<body class="main-body">
+	<div>
+		<ul class="top-nav" id="navbar">
+			<li class="top-nav-link"><a id="btnLoadData">Load Data</a></li>
+			<li class="top-nav-link"><a id="btnControls">Controls</a></li>
+			<li class="top-nav-link"><a id="btnRotate">Rotate</a></li>
+			<li class="top-nav-link"><a id="btnReset">Reset</a></li>
+			<li class="top-nav-link"><a id="btnShuffle">Shuffle</a></li>
+			<li class="top-nav-link"><a id="btnMoves">Steps</a></li>
+		</ul> 
+	</div>
+
+	<div id="container">
+		<canvas class="myCanvas" id="myCanvasID">
+			<script  src="../static/js/three-test.js"></script>
+		</canvas>
+	</div>
+
+
+	<div id="modalLoadData" class="modal">
+		<div class="modal-content">
+			<h1 class="modalHeader">Load Controls</h1>
+			<form>
+				<div class="modalItem">
+					<ul class="modalList">
+						<li class="modalListItem"><p>Select File</p></li>
+						<li class="modalListItem"><input type="text" class="selectFile" id="selectFile-id" placeholder="1588550410404.json"></li>
+					</ul>
+				</div>
+				<br>
+				<!--
+				<div class="modalItem">
+					<ul class="modalList">
+						<li class="modalListItem"><p>Axis</p></li>
+						<li class="modalListItem"><input type="number" max="2" min="0" class="rotatePlain" id="rotatePlain-id" placeholder="Axis"></li>
+					</ul>
+				</div>
+				<br>
+				<div class="modalItem">
+					<ul class="modalList">
+						<li class="modalListItem"><p>Include Shuffle</p></li>
+						<li class="modalListItem"><input type="checkbox" class="rotateReverse" id="rotateReverse-id" placeholder="Reverse"></li>
+					</ul>
+				</div>
+				-->
+				<div class="modalItem">
+					<ul class="modalList">
+						<li class="modalListItem"><p class="modalConfirm" id="btnDataConfirm">Confirm</p></li>
+					</ul>
+				</div>
+			</form>
+		</div>
+	</div>
+	  
+	<div id="modalControls" class="modal">
+		<div class="modal-content">
+			<h1 class="modalHeader">Control Panel</h1>
+			<form>
+				<div class="modalItem">
+					<ul class="modalList">
+						<li class="modalListItem"><p>Row / Column</p></li>
+						<li class="modalListItem"><input type="number" max="2" min="0" class="rotateI" id="rotateI-id" placeholder="Row / Column"></li>
+					</ul>
+				</div>
+				<br>
+				<div class="modalItem">
+					<ul class="modalList">
+						<li class="modalListItem"><p>Axis</p></li>
+						<li class="modalListItem"><input type="number" max="2" min="0" class="rotatePlain" id="rotatePlain-id" placeholder="Axis"></li>
+					</ul>
+				</div>
+				<br>
+				<div class="modalItem">
+					<ul class="modalList">
+						<li class="modalListItem"><p>Reverse</p></li>
+						<li class="modalListItem"><input type="checkbox" class="rotateReverse" id="rotateReverse-id" placeholder="Reverse"></li>
+					</ul>
+				</div>
+				<div class="modalItem">
+					<ul class="modalList">
+						<li class="modalListItem"><p class="modalConfirm" id="btnControlsConfirm">Confirm</p></li>
+					</ul>
+				</div>
+			</form>
+		</div>
+	</div>
+
+	<script src="../static/js/modal.js"></script>
 </body>
 
 </html>

@@ -1,0 +1,64 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>{{ title }}</title>
+
+		<link rel="stylesheet" href="../static/styles/reset.css">
+		<link rel="stylesheet" href="../static/styles/reveal.css">
+		<link rel="stylesheet" href="../static/styles/black.css">
+
+        <link rel="stylesheet" href="../static/styles/monokai.css">
+        
+        
+		<!-- Printing and PDF exports 
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+        </script>
+        -->
+        
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+                <section>
+                    <h2>Senior Project Demostration</h1>
+                    <p>By: David McCutcheon</p>
+                </section>
+				<section>
+                    <h2>Project Overview</h1>
+                    <p class="fragment fade-in">For my project, I want to use machine learning in order to solve a Rubik’s Cube.</p>
+                    <p class="fragment fade-in">I will be using a Raspberry Pi to host most of the project.</p>
+                    <p class="fragment fade-in">I will be creating a website to visualize the content.</p>
+                </section>
+				<section>
+                    <h2>Needs Analysis</h2>
+                    <p class="fragment fade-in">This project addresses the need for using machine learning to solve a Rubik’s cube like how humans would.</p>
+                    <p class="fragment fade-in">An objective of this project is to use Q-Learning to solve a Rubik’s cube.</p>
+                    <p class="fragment fade-in">This will be limited to using a Raspberry Pi.</p>
+                </section>
+                <section>
+                    <link rel="stylesheet" href="../static/styles/demo.css">
+                    <h2>Start Demostration</h2>
+                    <br>
+                    <br>
+                    <a href="/"><p class="btnStart" id="btnStart-id">Confirm</p></a>
+                </section>
+			</div>
+		</div>
+
+		<script src="../static/librarys/reveal.js"></script>
+
+		<script>
+			Reveal.initialize({
+				hash: true,
+			});
+		</script>
+	</body>
+</html>
