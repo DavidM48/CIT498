@@ -8,7 +8,7 @@ class dbconnect():
         print("Created DB setup")
     
     def connectToDB(self):
-        self.conn = psycopg2.connect(host="users.c7jggitb6poy.us-east-1.rds.amazonaws.com", database="users", user="postgres", password="postgres498")
+        self.conn = psycopg2.connect(host="", database="users", user="", password="")
 
     def insertUser(self, username, password, salt):
         sql = """INSERT INTO public."userTable"("userID", username, userpassword, usersalt)
