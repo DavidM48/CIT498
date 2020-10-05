@@ -1,30 +1,48 @@
 import Rubiks_Cube
 import Helper
+import jsonHelper
 
-#print(Helper.helper.sideDict)
-rc = Rubiks_Cube.Rubiks(3)  
-#rc.fillRubiks()
-#rc.test()
-print(rc.getRubiks()[0][0][1])
-print("\n")
-print(rc.getRubiks()[0][1][0])
-print("\n")
-print(rc.getRubiks()[0][2][1])
-print("\n")
-rc.rotateRubiks(0, True, False)
-print(rc.getRubiks()[0][0][1])
-print("\n")
-print(rc.getRubiks()[0][1][0])
-print("\n")
-#pprint.pprint(rc.getRubiks())
-#print("Cube 1: ")
-#print("Cube 2: ")
-#print(rc.getRubiks()[0][0][0])
-#rc.getRubiks()[0][0][0].swapQueue(rc.getRubiks()[0][0][2])
-#rc.getRubiks()[0][0][2].swapQueue(rc.getRubiks()[0][0][0])
-#rc.getRubiks()[1][1][1].swapCommitQueue()
-#rc.getRubiks()[0][0][0].swapCommitQueue()
-#print("Cube 1: ")
-#print(rc.getRubiks()[1][1][1])
-#print("Cube 2: ")
-#print(rc.getRubiks()[0][0][0])
+import json
+import copy
+import time
+
+import cProfile
+
+#import GymEnvironment as RubiksEnv
+
+#print(int(round(time.time() * 1000)))
+
+#env = RubiksEnv.CustomEnv()
+#print(env.encode())
+#env.reset()
+#print(env.encode())
+#env.reset()
+#print(env.encode())
+#env.step(0)
+#print(env.encode())
+
+#cProfile.run('Rubiks_Cube.Rubiks(3)')
+
+#rc.rotateRubiks(0,0,True)
+#rc.shuffle(50)
+#cProfile.run('rc.shuffle(20000)')
+#t = copy.deepcopy(rc.getMoveLog())
+#for x in range(len(t)):
+    #rc.rotateRubiks(t[len(t) - 1 - x]["i"],t[len(t) - 1 - x]["plain"], False if t[len(t) - 1 - x]["reverse"] else True)
+
+#f = open("moves.json", "w")
+#json.dump(rc.getMoveLog(),f)
+#f.close()
+
+#jh = jsonHelper.JSONRubiksWrite(rc)
+
+#f = open("test.json", "w")
+#json.dump(jh.convertToJSON(), f)
+#f.close()
+current_milli_time = lambda: int(round(time.time() * 1000))
+rc = Rubiks_Cube.Rubiks(3)
+rc.shuffle(20000)
+jh = jsonHelper.JSONRubiksWrite(rc)
+f = open("{}.json".format(current_milli_time()), "w")
+json.dump(jh.convertToJSON(), f)
+f.close()

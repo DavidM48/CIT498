@@ -2,47 +2,49 @@ import Cube
 import Helper
 
 import random
-import math
-import pprint
-import copy
 
 class Rubiks():
     
-    def __init__(self, size):
+    def __init__(self, size = 3):
+        if size < 3:
+            raise ValueError("Size is too small use 3 or bigger.")
         self.size = size
+
+        self.shuffled = False
+
         self.logMoves = {}
         self.logCount = 0
-        self.defaultCube()
+
+        self.logMovesShuffle = {}
+        self.logCountShuffle = 0
+
         self.initRubiks()
         self.fillRubiks()
     
-    def defaultCube(self):
-        self.dc = Cube.Cube(True)
-
     def initRubiks(self):
         self.rubiks = [[[0 for col in range(self.size)] for col in range(self.size)] for row in range(self.size)] 
 
     def fillRubiks(self):
+        top = (self.size - 2)
+        id = 0
         for x in range(self.size):
             for y in range(self.size):
                 for z in range(self.size):
-                    self.rubiks[x][y][z] = copy.deepcopy(self.dc)
+                    self.rubiks[x][y][z] = Cube.Cube(True, id)
                     self.rubiks[x][y][z].setCords(x, y, z)
-                    # ! Doesn't work with cubes bigger than 3x3 !
-                    if x <= 1:
+                    if x <= top:
                         self.rubiks[x][y][z].removeSide(0)
                     if x >= 1:
                         self.rubiks[x][y][z].removeSide(1)
-
-                    if y <= 1:
+                    if y <= top:
                         self.rubiks[x][y][z].removeSide(2)
                     if y >= 1:
                         self.rubiks[x][y][z].removeSide(3)
-
-                    if z <= 1:
+                    if z <= top:
                         self.rubiks[x][y][z].removeSide(4)
                     if z >= 1:
                         self.rubiks[x][y][z].removeSide(5)
+                    id += 1
 
     def getRubiks(self):
         return self.rubiks
@@ -50,14 +52,20 @@ class Rubiks():
     def getSize(self):
         return self.size
 
-    def rotateRubiks(self, i: int, plain: int, reverse: bool):
-        self.logMoves[self.logCount] = {"i":i,"plain":plain,"reverse":reverse}
-        self.logCount = self.logCount + 1
+    def rotateRubiks(self, i: int, plain: int, reverse: bool, fromShuffle=False):
+        if (plain > 2 or plain < 0):
+            print("Warning \'plain\' is out of bounds {}".format(plain))
         if (i >= self.size or i < 0):
-            #Check to make sure i is within limits
-            pass
-        sliced = []
+            raise ValueError("i is either to big or too small.")
 
+        if (fromShuffle):
+            self.logMovesShuffle[self.logCountShuffle] = {"i":i,"plain":plain,"reverse":reverse}
+            self.logCountShuffle += 1
+        else:
+            self.logMoves[self.logCount] = {"i":i,"plain":plain,"reverse":reverse}
+            self.logCount += 1
+
+        sliced = []
         #Fill the list with the cubes we need to swap
         for x in range(self.size):
             for y in range(self.size):
@@ -93,11 +101,42 @@ class Rubiks():
             sliced[x].rotateCube(plain, reverse)
     
     def shuffle(self, n: int):
+        if n <= 0:
+            raise ValueError("N is too small: N needs to be 1 or bigger")
+        self.clearShuffleMoveLog()
         for x in range(n):
-            self.rotateRubiks(random.randint(0,self.size-1),random.randint(0,2), True if random.randint(0,1) == 1 else False)
+            self.rotateRubiks(random.randint(0, self.size - 1),             # random number for i
+                            random.randint(0, 2),                           # random number for plain
+                            True if random.randint(0, 1) == 1 else False,   # random bool for reverse
+                            True)
+        self.shuffled = True   
+
+    def getShuffled(self):
+        return self.shuffled
+
+    def creatFromLog(self, log):
+        self.initRubiks()
+        self.fillRubiks()
+        for x in range(len(log)):
+            self.rotateRubiks(log[x]["i"], log[x]["plain"], log[x]["reverse"])
+
+    def clearMoveLog(self):
+        self.logMoves = {}
+        self.logCount = 0
+
+    def clearShuffleMoveLog(self):
+        self.shuffled = False 
+        self.logMovesShuffle = {}
+        self.logCountShuffle = 0
 
     def getMoveLog(self):
         return self.logMoves
+
+    def getLastMove(self):
+        return self.logMoves[len(self.logMoves)-1]
+
+    def getShuffleMoveLog(self):
+        return self.logMovesShuffle
 
     def test(self):
         w = ""
