@@ -1,4 +1,8 @@
-Buildt using Python 3.7.5
-<br>
 Python Librarys used:<br>
     Flask<br>
+    psycopg2<br>
+    pymongo<br>
+    json<br>
+JavaScript Librarys used:<br>
+    Three.js<br>
+    reveal.js<br>
