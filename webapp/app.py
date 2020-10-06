@@ -10,8 +10,8 @@ import postgresConnect as db
 
 app = Flask(__name__)
 
-RECAPTCHA_PUBLIC_KEY = '6Lei7vEUAAAAADJke2_q0IlLa5XVj2Aa8pI2zIpH'
-RECAPTCHA_PRIVATE_KEY = '6Lei7vEUAAAAAPNzvZSviN0sO2Jo7AYOpVXJAX_z'
+RECAPTCHA_PUBLIC_KEY = ''
+RECAPTCHA_PRIVATE_KEY = ''
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
